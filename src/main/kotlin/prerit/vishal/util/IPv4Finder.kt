@@ -1,7 +1,5 @@
 package prerit.vishal.util
 
-import kotlinx.coroutines.NonCancellable.isActive
-import kotlinx.coroutines.delay
 import java.net.InetAddress
 import java.net.NetworkInterface
 import java.nio.file.Files
@@ -46,23 +44,25 @@ fun updateCurrentIPAndPort() {
     Files.write(Paths.get("src/main/resources/static/currentIP.js"), updatedIP.toByteArray())
 }
 
-suspend fun monitorIPChanges(checkIntervalMillis: Long) {
-    var previousIP = getLocalIPv4Address()
-
-    while (isActive) {  // Use 'isActive' to make coroutine cancellable
-        val currentIP = getLocalIPv4Address()
-
-        println("Current IP while monitoring: $currentIP")
-
-        if (currentIP != previousIP) {
-            println("Local IP address has changed from $previousIP to $currentIP")
-            // Update the previousIP to the current one
-            previousIP = currentIP
-            updateCurrentIPAndPort()    // update it in the file
-        }
-
-        println("Previous IP : $previousIP")
-
-        delay(checkIntervalMillis)  // Non-blocking delay
-    }
-}
+//suspend fun monitorIPChanges(checkIntervalMillis: Long) {
+//    var previousIP = getLocalIPv4Address()
+//
+//    while (isActive) {  // Use 'isActive' to make coroutine cancellable
+//        val currentIP = getLocalIPv4Address()
+//
+//        println("Current IP while monitoring: $currentIP")
+//
+//        if (currentIP != previousIP) {
+//            println("Local IP address has changed from $previousIP to $currentIP")
+//            // Update the previousIP to the current one
+//            previousIP = currentIP
+//            updateCurrentIPAndPort()    // update it in the file
+//            ipChanged = true
+//
+//        }
+//
+//        println("Previous IP : $previousIP")
+//
+//        delay(checkIntervalMillis)  // Non-blocking delay
+//    }
+//}

@@ -15,19 +15,8 @@ fun Application.configureSockets() {
         masking = false
     }
     routing {
-//        webSocket("/ws") { // websocketSession
-//            for (frame in incoming) {
-//                if (frame is Frame.Text) {
-//                    val text = frame.readText()
-//                    outgoing.send(Frame.Text("YOU SAID: $text"))
-//                    if (text.equals("bye", ignoreCase = true)) {
-//                        close(CloseReason(CloseReason.Codes.NORMAL, "Client said BYE"))
-//                    }
-//                }
-//            }
-//        }
 
-        val clients = mutableListOf<DefaultWebSocketServerSession>()
+        val clients = mutableSetOf<DefaultWebSocketSession>()
 
         webSocket("/chat") {
             try {
@@ -51,7 +40,7 @@ fun Application.configureSockets() {
                 }
             } catch (ex: Exception) {
                 println(ex.stackTrace)
-                clients -= this
+               clients -= this
             }
         }
     }
