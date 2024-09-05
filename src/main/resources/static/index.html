@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>localhost:chat</title>
+
+	<style>
+		body {
+    background-color: black;
+}
+
+body * {
+    margin: 5px;
+}
+
+p, pre {
+    padding: 7px;
+    border-radius: 9px;
+    font-size: medium;
+    color: white;
+    background: rgb(34, 33, 33);
+}
+
+pre {
+  white-space: pre-wrap; /* Allow wrapping for long lines */
+  font-family: monospace; /* Use a monospace font for consistent formatting */
+  overflow-wrap: break-word;
+}
+
+#main-div {
+    display: flex;
+    flex-direction: column;
+    height: 98vh;
+}
+
+#previous-text-div {
+     flex: 9;
+    overflow-y: auto;
+}
+
+#message-input {
+    flex: 1;
+    width: 99%;
+    box-sizing: border-box;
+    background: rgb(32, 32, 32);
+    outline: none;
+    border: 0;
+    color: rgb(255, 255, 255);
+    height: 2.8em;
+    padding: 15px;
+    border-radius: 20px;
+    font-size: medium;
+}
+	</style>
+<!--	This file contains the websocket ip and port, rewritten everytime before server starts -->
+	<script src="currentIP.js"></script>
+<!--	This file contains actual code which operates with websocket and other functions-->
+	<script src="./script.js"></script>
+
+</head>
+
+<body onload="setupSocket()">
+	<div id="main-div">
+
+		<div id="previous-text-div">
+
+		</div>
+
+		<div id="text-input-div">
+			<form method="post" action="" id="chat-form" autocomplete="off" onsubmit="return sendMessageToServer()">
+				<input type="text" name="message" id="message-input" placeholder="Enter query here"
+					autocomplete="off">
+			</form>
+		</div>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,6 @@
+ktor:
+  application:
+    modules:
+      - prerit.vishal.ApplicationKt.module
+  deployment:
+    port: 9090

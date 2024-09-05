@@ -1,0 +1,1 @@
+const serverURL = 'ws://192.168.1.186:9090/chat';
