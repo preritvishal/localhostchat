@@ -1,5 +1,15 @@
-
 let socket;
+
+function generateClientID() {
+    let clientID = localStorage.getItem('clientID');
+    if (!clientID) {
+        const array = new Uint32Array(1);
+        window.crypto.getRandomValues(array);
+        clientID = 'client-' + array[0].toString(36);
+        localStorage.setItem('clientID', clientID);
+    }
+    return clientID;
+}
 
 function scrollToBottom() {
     const messageList = document.getElementById("previous-text-div");
@@ -32,6 +42,9 @@ function appendMessage(message) {
 
 function showMessageToUser(event) {
     let receivedText = JSON.parse(event.data);
+    if (receivedText.client == generateClientID()) {
+        receivedText.client = "me";
+    }
     console.log(receivedText)
     appendMessage(receivedText)
 
@@ -41,11 +54,12 @@ function sendMessageToServer() {
     var message_input = document.getElementById("message-input").value;
     document.getElementById("message-input").value = "";
     const messageObject = {
-        "client query": message_input
+        "client": generateClientID(),
+        "query": message_input
     };
     console.log(messageObject);
-    socket.send(message_input);
-    appendMessage(messageObject);
+    socket.send(JSON.stringify(messageObject));
+    // appendMessage(messageObject);
     scrollToBottom();
     return false;
 }
