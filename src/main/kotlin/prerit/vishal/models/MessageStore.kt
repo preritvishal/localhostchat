@@ -11,19 +11,27 @@ object MessageStore {
     fun getAllMessageList(): MutableList<Message> = allMessageList
     fun getMainMessageList(): MutableList<Message> = mainMessageList
 
-    fun addMessage(message: Message) {
+    fun addMessage(message: Message): Message {
         if (!mainMessageList.contains(message)) {
             mainMessageList.add(message)
             allMessageList.add(message)
         }
+        return mainMessageList.last()
     }
 
-    fun addReply (id: Int, message: Message) {
-            val msgList = allMessageList.filter { it.id == id }
-            if (msgList.isNotEmpty()) {
-                msgList.forEach { it.replies.add(message) }
-                allMessageList.add(message)
+    fun addReply (id: Int, message: Message): Message {
+
+        var msg: Message? = null
+        for (i: Message in allMessageList) {
+            if (i.id == id) {
+                msg = i
             }
+        }
+
+        msg?.replies?.add(message)
+        allMessageList.add(message)
+
+        return msg ?: message
     }
 
     fun deleteMessage(id: Int) {

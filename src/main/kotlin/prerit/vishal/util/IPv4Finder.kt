@@ -39,7 +39,7 @@ fun updateCurrentIPAndPort() {
     val port = getPortFromConfigFile()
     println("Local IPv4 Address: ${ipv4Address ?: "No IPv4 address found"}")
 
-    val updatedIP = "const serverURL = 'ws://$ipv4Address:$port/chat';"
+    val updatedIP = "let serverURL = 'ws://$ipv4Address:$port/chat';"
 
     Files.write(Paths.get("src/main/resources/static/currentIP.js"), updatedIP.toByteArray())
 }

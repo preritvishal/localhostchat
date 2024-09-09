@@ -1,1 +1,1 @@
-const serverURL = 'ws://192.168.1.183:9090/chat';
+let serverURL = 'ws://192.168.1.194:9090/chat';

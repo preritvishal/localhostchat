@@ -8,7 +8,7 @@ import prerit.vishal.models.Message
 import prerit.vishal.plugins.*
 import prerit.vishal.util.updateCurrentIPAndPort
 
-fun main(args: Array<String>) = runBlocking {   // using coroutines to constantly monitor the IP changes
+fun main(args: Array<String>) {   // using coroutines to constantly monitor the IP changes
 
     // finds and updates current IP from device settings and port from config file
     updateCurrentIPAndPort()

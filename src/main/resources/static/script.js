@@ -42,6 +42,11 @@ function appendMessage(message) {
 
 function showMessageToUser(event) {
     let receivedText = JSON.parse(event.data);
+
+    if (receivedText == "") {
+        return
+    }
+
     if (receivedText.client == generateClientID()) {
         receivedText.client = "me";
     }
@@ -53,7 +58,7 @@ function showMessageToUser(event) {
 function sendMessageToServer() {
     var message_input = document.getElementById("message-input").value;
     document.getElementById("message-input").value = "";
-    const messageObject = {
+    let messageObject = {
         "client": generateClientID(),
         "query": message_input
     };
