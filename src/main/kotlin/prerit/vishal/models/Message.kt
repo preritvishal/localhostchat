@@ -3,6 +3,8 @@ package prerit.vishal.models
 import kotlinx.serialization.EncodeDefault
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import java.time.LocalDateTime
 
 object messageCounter {
@@ -21,12 +23,7 @@ data class Message (
     @EncodeDefault(EncodeDefault.Mode.ALWAYS)       // to show the empty variables
     var replies: MutableList<Message> = mutableListOf<Message>()
 ) {
-//    constructor(incomingMessage: IncomingMessage, ip: String) : this(
-//        messageCounter.getNextNumber(),
-//        ip,
-//        incomingMessage.client,
-//        LocalDateTime.now().toString(),
-//        incomingMessage.query,
-//        mutableListOf<Message>()
-//    )
+    fun toJsonString(): String {
+        return Json.encodeToString(this)
+    }
 }

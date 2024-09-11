@@ -27,13 +27,11 @@ fun Application.configureSockets() {
                 for (frame in incoming) {
                     if (frame is Frame.Text) {
                         val reply = processIncomingText(frame.readText(), ipAddress)
-
                         clients.forEach { client ->
-                            if (client.isActive) {    // checking this for scrolling
+                            if (client.isActive) {
                                 client.send(Frame.Text(reply))
                             }
                         }
-
                     }
                 }
             } catch (ex: Exception) {
