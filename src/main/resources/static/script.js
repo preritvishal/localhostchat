@@ -1,4 +1,5 @@
 let socket;
+let serverURL = 'wss://bold-snake-amusing.ngrok-free.app/chat';
 
 function generateClientID() {
     let clientID = localStorage.getItem('clientID');

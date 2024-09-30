@@ -1,1 +1,0 @@
-let serverURL = 'ws://192.168.1.194:9090/chat';

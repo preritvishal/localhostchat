@@ -4,3 +4,5 @@ ktor:
       - prerit.vishal.ApplicationKt.module
   deployment:
     port: 9090
+  defaultHeaders:
+    "ngrok-skip-browser-warning": "true"

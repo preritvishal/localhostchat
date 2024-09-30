@@ -36,4 +36,5 @@ dependencies {
 
 //    implementation ("org.jetbrains.kotlinx:kotlinx-datetime:0.3.2")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
+    implementation("io.ktor:ktor-server-default-headers:2.0.20")
 }
