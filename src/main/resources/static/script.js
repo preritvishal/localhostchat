@@ -1,5 +1,6 @@
 let socket;
 let serverURL = 'wss://bold-snake-amusing.ngrok-free.app/chat';
+let permission;
 
 function generateClientID() {
     let clientID = localStorage.getItem('clientID');
@@ -41,8 +42,22 @@ function appendMessage(message) {
     messageList.appendChild(messageElement);
 }
 
+function showNotification() {
+
+    if (permission === "granted") {
+        const notification = new Notification("New Updates", {
+            message: "Updated!"
+        });
+
+        notification.onclick = () => {
+            window.focus(); // Focus the tab when the user clicks on the notification
+        };
+    }
+}
+
 function showMessageToUser(event) {
     let receivedText = JSON.parse(event.data);
+    showNotification();
 
     if (receivedText == "") {
         return
@@ -69,3 +84,20 @@ function sendMessageToServer() {
     scrollToBottom();
     return false;
 }
+
+// events
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Check if we've already stored the permission
+    permission = localStorage.getItem('notificationPermission');
+
+    // If no permission stored, request it
+    if (!permission) {
+        Notification.requestPermission().then(function(permission) {
+            localStorage.setItem('notificationPermission', permission);
+            console.log('Notification permission:', permission);
+        });
+    } else {
+        console.log('Notification permission already stored:', permission);
+    }
+});
