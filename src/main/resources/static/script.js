@@ -1,6 +1,7 @@
 let socket;
 let serverURL = 'wss://bold-snake-amusing.ngrok-free.app/chat';
 let permission;
+let messageAppearance = "json";
 
 function generateClientID() {
     let clientID = localStorage.getItem('clientID');
@@ -18,6 +19,8 @@ function scrollToBottom() {
     messageList.scrollTop = messageList.scrollHeight;
 }
 
+// socket related functions
+
 function setupSocket() {
     socket = new WebSocket(serverURL);
 
@@ -28,11 +31,29 @@ function setupSocket() {
 
 function logCloseToConsole() {
     console.log("Web socket connection closed");
+    document.getElementById('prompt-input-symbol').style.color = 'red';
 }
 
 function logOpenToConsole() {
     console.log("Web socket connection opened");
+    document.getElementById('prompt-input-symbol').style.color = '#47f547';
 }
+
+function sendMessageToServer() {
+    var message_input = document.getElementById("message-input").value;
+    document.getElementById("message-input").value = "";
+    let messageObject = {
+        "client": generateClientID(),
+        "query": message_input
+    };
+    console.log(messageObject);
+    socket.send(JSON.stringify(messageObject));
+    // appendMessage(messageObject);
+    // scrollToBottom();
+    return false;
+}
+
+// frontend realted functions
 
 function appendMessage(message) {
     const messageList = document.getElementById("previous-text-div");
@@ -55,10 +76,12 @@ function showNotification() {
     }
 }
 
+function changeMessageFormat() {
+    messageAppearance = "json";
+}
+
 function showMessageToUser(event) {
     let receivedText = JSON.parse(event.data);
-    showNotification();
-
     if (receivedText == "") {
         return
     }
@@ -66,26 +89,20 @@ function showMessageToUser(event) {
     if (receivedText.client == generateClientID()) {
         receivedText.client = "me";
     }
-    console.log(receivedText)
-    appendMessage(receivedText)
 
+    if (receivedText.client != "me") {
+        showNotification();
+    }
+
+    console.log(receivedText);
+    appendMessage(receivedText);
+
+    if (receivedText.client == "me") {
+        scrollToBottom();
+    }
 }
 
-function sendMessageToServer() {
-    var message_input = document.getElementById("message-input").value;
-    document.getElementById("message-input").value = "";
-    let messageObject = {
-        "client": generateClientID(),
-        "query": message_input
-    };
-    console.log(messageObject);
-    socket.send(JSON.stringify(messageObject));
-    // appendMessage(messageObject);
-    scrollToBottom();
-    return false;
-}
-
-// events
+// event related functions
 
 document.addEventListener('DOMContentLoaded', function() {
     // Check if we've already stored the permission
@@ -101,3 +118,51 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('Notification permission already stored:', permission);
     }
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const items = document.querySelectorAll('.scrollable-message-format');
+
+    // Create an Intersection Observer
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Call your function when the item is in the viewport
+                itemInView(entry.target);
+            }
+        });
+    }, {
+        root: document.querySelector('.right-side-option-divs'), // Use the scrollable container as the root
+        threshold: 0.5 // Trigger when at least 50% of the item is visible
+    });
+
+    items.forEach(item => {
+        observer.observe(item); // Observe each item
+    });
+});
+
+// Function to call when an item is in view
+function itemInView(item) {
+    console.log('In view:', item.textContent);
+    messageAppearance = item.textContent;
+    rePopulateScreenWithMessage();
+}
+
+function rePopulateScreenWithMessage() {
+    const previousTextDiv = document.getElementById('previous-text-div');
+    const allPre = previousTextDiv.getElementsByTagName('pre');
+
+    let existingMessages = [];
+
+    for (let i = 0; i < allPre.length; ++i) {
+        let jsonText = allPre[i].textContent;
+        try {
+            existingMessages.push(JSON.parse(jsonText));
+        } catch (e) {
+            console.error(e);
+        }
+    }
+}
+
+
+// visual customization
+

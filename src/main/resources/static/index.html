@@ -4,98 +4,62 @@
 <head>
 	<meta charset="UTF-8">
 	<title>localhost:chat</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Viewport meta tag for responsive design -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Viewport meta tag for responsive design -->
 
-	<style>
-		body {
-			background-color: black;
-			margin: 0;
-			padding: 0;
-			font-family: Arial, sans-serif; /* Set a fallback font */
-		}
+	<link rel="stylesheet" href="/static/style.css">
 
-		p, pre {
-			padding: 7px;
-			border-radius: 9px;
-			font-size: medium;
-			color: white;
-			background: rgb(34, 33, 33);
-		}
-
-		pre {
-			white-space: pre-wrap; /* Allow wrapping for long lines */
-			font-family: monospace; /* Use a monospace font for consistent formatting */
-			overflow-wrap: break-word;
-		}
-
-		#main-div {
-			display: flex;
-			flex-direction: column;
-			box-sizing: border-box;
-		}
-
-		#previous-text-div {
-			flex: 1;
-			overflow-y: auto;
-			padding: 10px; /* Add padding to prevent text from touching edges */
-		}
-
-		#text-input-div {
-			padding: 10px; /* Add padding to input container */
-		}
-
-		#message-input {
-			width: 100%;
-			box-sizing: border-box;
-			background: rgb(32, 32, 32);
-			outline: none;
-			border: 0;
-			color: rgb(255, 255, 255);
-			height: 2.8em;
-			padding: 10px; /* Reduce padding to fit better on small screens */
-			border-radius: 20px;
-			font-size: medium;
-		}
-
-		/* Mobile optimization */
-		@media (max-width: 600px) {
-			#main-div {
-				height: 85vh; /* Use 85vh for mobile devices */
-			}
-
-			#message-input {
-				font-size: small; /* Adjust font size for smaller screens */
-				padding: 8px; /* Reduce padding */
-			}
-
-			#previous-text-div {
-				padding: 5px; /* Reduce padding */
-			}
-		}
-
-		/* Laptop optimization */
-		@media (min-width: 601px) {
-			#main-div {
-				height: 100vh; /* Use 100vh for larger screens */
-			}
-		}
-	</style>
 	<script src="/static/script.js"></script>
 </head>
 
 <body onload="setupSocket()">
 <div id="main-div">
 
-	<div id="previous-text-div">
+	<!-- <div id="main-div-header">
+        <div id="status-bar-div">
+            <div class="status-bar-child-div" id="div-connection-alive">Connection online</div>
+            <div class="status-bar-child-div" id="div-buffer"></div>
+            <div class="status-bar-child-div" id="div-online-users">database available</div>
+        </div>
+    </div> -->
 
+	<div id="main-div-body">
+
+		<div id="main-div-body-body">
+			<div id="previous-text-div"></div>
+
+			<div id="text-input-div">
+				<form method="post" action="" id="chat-form" autocomplete="off"
+					  onsubmit="return sendMessageToServer()">
+					<label for="message-input" id="prompt-input-symbol">
+						bash >
+					</label>
+
+					<input type="text" name="message" id="message-input" placeholder="_" autocomplete="off">
+
+					<div id="input-side-bar-right">
+						<div class="right-side-option-divs" id="right-side-option-last-div">
+							<div class="scrollable-message-format">
+								<label for="">
+									json
+								</label>
+							</div>
+							<div class="scrollable-message-format">
+								<label for="">
+									text
+								</label>
+							</div>
+						</div>
+
+					</div>
+
+				</form>
+			</div>
+		</div>
 	</div>
 
-	<div id="text-input-div">
-		<form method="post" action="" id="chat-form" autocomplete="off" onsubmit="return sendMessageToServer()">
-			<input type="text" name="message" id="message-input" placeholder="Enter query here"
-				   autocomplete="off">
-		</form>
-	</div>
+
+
 </div>
 </body>
 

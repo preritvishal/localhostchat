@@ -1,0 +1,192 @@
+/* debug mode for dummies */
+
+/* div {
+    border: 1px solid white;
+    padding: 5px;
+} */
+
+
+* {
+    /* border: 1px solid white;  */
+    /* padding: 5px;  */
+}
+
+
+/* actual css starts here */
+
+
+/* text related customization */
+
+p, pre {
+    padding: 7px;
+    border-radius: 9px;
+    font-size: medium;
+    color: white;
+    background: rgb(34, 33, 33);
+}
+
+pre {
+    white-space: pre-wrap; /* Allow wrapping for long lines */
+    font-family: monospace; /* Use a monospace font for consistent formatting */
+    overflow-wrap: break-word;
+}
+
+label {
+    color: rgb(155, 142, 142);
+    font-family: monospace;
+    text-wrap: nowrap;
+    text-wrap-mode: nowrap;
+}
+
+
+
+/* middle body customization */
+
+body {
+    background-color: black;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif; /* Set a fallback font */
+}
+
+/* top bar customization */
+
+#status-bar-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; /* Ensure space between the status and user count */
+    align-items: center;
+    padding: 10px;
+    border: 1px solid red;
+    border-radius: 20px;
+}
+
+.status-bar-child-div {
+    flex: 1; /* Allow divs to take up equal space */
+    padding: 0 10px;
+    color: rgb(43, 212, 37);
+    border: 1px solid blue;
+}
+
+#div-buffer {
+    flex-grow: 10; /* Make the buffer div take up most space to push the other divs apart */
+}
+
+#div-connection-alive {
+    text-align: left; /* Align the connection status to the left */
+}
+
+#div-online-users {
+    text-align: right; /* Align the user count to the right */
+}
+
+#connection-status, #user-count {
+    font-weight: bold;
+}
+
+/* mid body customizations */
+
+#main-div-body {
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+}
+
+#main-div-body-body {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    width: 90vw;
+    height: 99vh;
+    flex: 9;
+}
+
+#previous-text-div {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px; /* Add padding to prevent text from touching edges */
+}
+
+#text-input-div {
+    display: flex;
+    flex-direction: row;
+    padding: 10px; /* Add padding to input container */
+}
+
+#chat-form {
+    display: flex;
+    flex: 10;
+    background-color: rgb(12, 12, 12);
+    border-radius: 20px;
+}
+
+#prompt-input-symbol {
+    display: flex;
+    flex: 0.4;
+    /*color: #47f547;*/
+    font-family: monospace;
+    justify-content: right;
+    /* text-wrap-mode: nowrap; */
+    padding: 1vh;
+    padding-top: 1.4vh;
+    /* border: 1px solid white; */
+}
+
+#message-input {
+    display: flex;
+    flex: 9;
+    width: 100%;
+    box-sizing: border-box;
+    background: rgb(12, 12, 12);
+    outline: none;
+    border: 0;
+    color: rgb(172, 172, 172);
+    height: 2.8em;
+    padding: 20px; /* Reduce padding to fit better on small screens */
+    padding-left: 5px;
+    border-radius: 20px;
+    font-size: medium;
+    font-family: monospace;
+}
+
+#input-side-bar-right {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: end;
+    flex: 1;
+    box-sizing: border-box;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.right-side-option-divs {
+    height: 4.5vh;
+    width: 55px;
+
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: column;
+    overflow-y: auto;
+    align-items: left;
+    background-color: rgb(17, 17, 17);
+
+    /* hiding scroll bar */
+    scrollbar-width: none; /* For Firefox */
+    -ms-overflow-style: none; /* For Internet Explorer and Edge */
+}
+
+#right-side-option-last-div {
+    width: 65px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.right-side-option-divs::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, and Opera */
+}
+
+.scrollable-message-format {
+    display: flex;
+    margin: 1.4vh 0vh;
+    margin-left: 0.7vw;
+}
