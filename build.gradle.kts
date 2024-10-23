@@ -12,6 +12,7 @@ version = "0.0.1"
 
 application {
     mainClass.set("io.ktor.server.jetty.jakarta.EngineMain")
+    applicationDefaultJvmArgs = listOf("-Dio.ktor.development=true")
 
     val isDevelopment: Boolean = project.ext.has("development")
     applicationDefaultJvmArgs = listOf("-Dio.ktor.development=$isDevelopment")

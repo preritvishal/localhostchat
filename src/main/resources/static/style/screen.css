@@ -1,0 +1,11 @@
+@media only screen and (min-width: 2400px) {
+    #main-div-body-body {
+        height: 99vh;  /* Adjust to your desired height for mobile */
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    body, #main-div-body-body {
+        height: 90vh;  /* Adjust to your desired height for mobile */
+    }
+}

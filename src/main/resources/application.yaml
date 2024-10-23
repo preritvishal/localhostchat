@@ -1,4 +1,5 @@
 ktor:
+  development: true
   application:
     modules:
       - prerit.vishal.ApplicationKt.module

@@ -7,6 +7,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Viewport meta tag for responsive design -->
 
+	<link rel="stylesheet" href="/static/style/class.css">
+	<link rel="stylesheet" href="/static/style/debug.css">
+	<link rel="stylesheet" href="/static/style/input-form.css">
+	<link rel="stylesheet" href="/static/style/main-body.css">
+	<link rel="stylesheet" href="/static/style/message-area.css">
+	<link rel="stylesheet" href="/static/style/screen.css">
 	<link rel="stylesheet" href="/static/style/style.css">
 
 	<script src="/static/script/vars.js"></script>
@@ -18,20 +24,94 @@
 <body onload="setupSocket()">
 <div id="main-div">
 
-	<!-- <div id="main-div-header">
-        <div id="status-bar-div">
-            <div class="status-bar-child-div" id="div-connection-alive">Connection online</div>
-            <div class="status-bar-child-div" id="div-buffer"></div>
-            <div class="status-bar-child-div" id="div-online-users">database available</div>
-        </div>
-    </div> -->
-
 	<div id="main-div-body">
 
 		<div id="main-div-body-body">
 			<div id="previous-text-div"></div>
 
 			<div id="text-input-div">
+
+				<div id="hidden-input-bar" class="flex-row pad5 round-corner-all" style="display: none" >
+					<div class="flex-row-hidden-scroll pad5 child-pad5" id="hidden-input-action-bar">
+						<label>action1</label>
+						<label>action2</label>
+						<label>action3</label>
+						<label>action4</label>
+					</div>
+
+					<div class="flex-row-hidden-scroll pad5 child-pad5" id="hidden-input-emoji-bar">
+						<label>😀</label>
+						<label>😃</label>
+						<label>😄</label>
+						<label>😁</label>
+						<label>😆</label>
+						<label>😅</label>
+						<label>😂</label>
+						<label>🤣</label>
+						<label>😊</label>
+						<label>😇</label>
+						<label>😍</label>
+						<label>😘</label>
+						<label>😗</label>
+						<label>😙</label>
+						<label>😚</label>
+						<label>😋</label>
+						<label>😎</label>
+						<label>😍</label>
+						<label>😔</label>
+						<label>😞</label>
+						<label>😕</label>
+						<label>🙁</label>
+						<label>😣</label>
+						<label>😖</label>
+						<label>😫</label>
+						<label>😩</label>
+						<label>😢</label>
+						<label>😭</label>
+						<label>😱</label>
+						<label>😨</label>
+						<label>😰</label>
+						<label>😳</label>
+						<label>😵</label>
+						<label>😶</label>
+						<label>😐</label>
+						<label>😑</label>
+						<label>😬</label>
+						<label>😯</label>
+						<label>😦</label>
+						<label>😧</label>
+						<label>😮</label>
+						<label>😲</label>
+						<label>😵‍💫</label>
+						<label>😳</label>
+						<label>😕</label>
+						<label>😮‍💨</label>
+						<label>😅</label>
+						<label>😡</label>
+						<label>😠</label>
+						<label>🤬</label>
+						<label>😈</label>
+						<label>👿</label>
+						<label>💀</label>
+						<label>👻</label>
+						<label>👽</label>
+						<label>🤖</label>
+						<label>🎃</label>
+						<label>😺</label>
+						<label>😻</label>
+						<label>🙀</label>
+						<label>😼</label>
+					</div>
+					<div class="flex-row-hidden-scroll pad5 child-pad5" id="hidden-input-multiplier-bar">
+						<label>x1</label>
+						<label>x2</label>
+						<label>x3</label>
+						<label>x4</label>
+						<label>x5</label>
+						<label>x10</label>
+					</div>
+				</div>
+
 				<form method="post" action="" id="chat-form" autocomplete="off"
 					  onsubmit="return sendMessageToServer()">
 					<label for="message-input" id="prompt-input-symbol"
@@ -42,7 +122,7 @@
 					<input type="text" name="message" id="message-input" placeholder="_" autocomplete="off">
 
 					<div id="input-side-bar-right">
-						<div class="right-side-option-divs" id="right-side-option-last-div">
+						<div class="flex-column-hidden-scroll right-side-option-divs" id="right-side-option-last-div">
 							<div class="scrollable-message-format">
 								<label>
 									json
@@ -55,8 +135,12 @@
 							</div>
 						</div>
 
+						<div class="right-side-option-divs" id="right-side-emoji-multiplier-div">
+							<div class="pad5 child-pad5" onclick="toggleEmojiBar()">
+								<label>^</label>
+							</div>
+						</div>
 					</div>
-
 				</form>
 			</div>
 		</div>

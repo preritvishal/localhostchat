@@ -39,5 +39,12 @@ function showNotification() {
     }
 }
 
-// visual customization
-
+function toggleEmojiBar() {
+    const emojiBar = document.getElementById('hidden-input-bar');
+    console.log("here");
+    if (emojiBar.style.display === 'none' || emojiBar.style.display === '') {
+        emojiBar.style.display = 'flex'; // Show the element (flex can be changed to block or any other display value as needed)
+    } else {
+        emojiBar.style.display = 'none'; // Hide the element
+    }
+}

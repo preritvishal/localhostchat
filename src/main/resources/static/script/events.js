@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 // Call your function when the item is in the viewport
-                itemInView(entry.target);
+                messageAppearance = entry.target.textContent.trim();
             }
         });
     }, {
@@ -20,34 +20,6 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(item); // Observe each item
     });
 });
-
-// Function to call when an item is in view
-function itemInView(item) {
-    console.log('In view:', item.textContent.trim());
-    messageAppearance = item.textContent.trim();
-}
-
-// for later advancements
-function rePopulateScreenWithMessage() {
-    const previousTextDiv = document.getElementById('previous-text-div');
-    const allPre = previousTextDiv.getElementsByTagName('pre');
-
-    let existingMessages = [];
-
-    for (let i = 0; i < allPre.length; ++i) {
-        let jsonText = allPre[i].textContent;
-        try {
-            existingMessages.push(JSON.parse(jsonText));
-        } catch (e) {
-            console.error(e);
-        }
-    }
-
-    document.getElementById('previous-text-div').innerHTML = "";
-    existingMessages.forEach(data => {
-        appendMessage(data.message);
-    })
-}
 
 document.addEventListener('DOMContentLoaded', function() {
     // Check if we've already stored the permission
@@ -62,4 +34,33 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
         console.log('Notification permission already stored:', permission);
     }
+});
+
+// scroll left right on scrolling up down
+
+document.addEventListener('DOMContentLoaded', function() {
+
+    const emojiBar = document.getElementById('hidden-input-emoji-bar');
+    const multiplierBar = document.getElementById('hidden-input-multiplier-bar');
+    const actionBar = document.getElementById('hidden-input-action-bar');
+    const messageInput = document.getElementById('message-input');
+
+    // Reusable function to handle the wheel event
+    const handleWheelScroll = (event) => {
+        event.preventDefault(); // Prevent the default scroll behavior
+        event.currentTarget.scrollLeft += event.deltaY; // Scroll left/right based on vertical wheel movement
+    };
+
+    // Add the wheel event listener to each bar
+    emojiBar.addEventListener('wheel', handleWheelScroll);
+    actionBar.addEventListener('wheel', handleWheelScroll);
+    multiplierBar.addEventListener('wheel', handleWheelScroll);
+
+    const emojis = emojiBar.querySelectorAll('label');
+    emojis.forEach(emoji => {
+        emoji.addEventListener('click', () => {
+            messageInput.value += emoji.textContent; // Append the emoji to the input
+            messageInput.focus(); // Focus on the message input after clicking the emoji
+        });
+    });
 });
