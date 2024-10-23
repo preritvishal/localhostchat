@@ -21,7 +21,7 @@ fun Application.module() {
     }
 
     configureSerialization()
-    configureTemplating()
+//    configureTemplating()
     configureSockets()
     configureRouting()
 

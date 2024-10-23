@@ -7,9 +7,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Viewport meta tag for responsive design -->
 
-	<link rel="stylesheet" href="/static/style.css">
+	<link rel="stylesheet" href="/static/style/style.css">
 
-	<script src="/static/script.js"></script>
+	<script src="/static/script/vars.js"></script>
+	<script src="/static/script/events.js"></script>
+	<script src="/static/script/websocket.js"></script>
+	<script src="/static/script/script.js"></script>
 </head>
 
 <body onload="setupSocket()">
@@ -31,7 +34,8 @@
 			<div id="text-input-div">
 				<form method="post" action="" id="chat-form" autocomplete="off"
 					  onsubmit="return sendMessageToServer()">
-					<label for="message-input" id="prompt-input-symbol">
+					<label for="message-input" id="prompt-input-symbol"
+						   onclick="tryReconnecting(true)" onscroll="tryReconnecting(true)">
 						bash >
 					</label>
 
@@ -40,12 +44,12 @@
 					<div id="input-side-bar-right">
 						<div class="right-side-option-divs" id="right-side-option-last-div">
 							<div class="scrollable-message-format">
-								<label for="">
+								<label>
 									json
 								</label>
 							</div>
 							<div class="scrollable-message-format">
-								<label for="">
+								<label>
 									text
 								</label>
 							</div>
