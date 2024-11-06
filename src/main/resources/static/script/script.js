@@ -41,10 +41,13 @@ function showNotification() {
 
 function toggleEmojiBar() {
     const emojiBar = document.getElementById('hidden-input-bar');
-    console.log("here");
+    const chatForm = document.getElementById('chat-form');
     if (emojiBar.style.display === 'none' || emojiBar.style.display === '') {
         emojiBar.style.display = 'flex'; // Show the element (flex can be changed to block or any other display value as needed)
+        // chatForm.classList.remove('round-corner-top');
+        
     } else {
         emojiBar.style.display = 'none'; // Hide the element
+        // chatForm.classList.add('round-corner-top');
     }
 }

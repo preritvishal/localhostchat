@@ -1,41 +1,18 @@
 #text-input-div {
-    display: flex;
-    flex-direction: column;
     padding: 10px; /* Add padding to input container */
 }
 
-.hidden-input-scroll-bar {
-    display: flex;
-    flex-direction: row;
-    padding: 5px;
-}
-
-#hidden-input-action-bar {
-    display: flex;
-    flex-direction: row;
-}
-
-#hidden-input-emoji-bar {
-    flex: 5;
-}
-
 #chat-form {
-    display: flex;
-    flex: 10;
+    /* display: flex;
+    flex: 10; */
     background-color: rgb(12, 12, 12);
-    border-radius: 20px;
+    /* border-radius: 20px; */
 }
 
 #prompt-input-symbol {
-    display: flex;
-    flex: 0.4;
-    /*color: #47f547;*/
     font-family: monospace;
-    justify-content: right;
-    /* text-wrap-mode: nowrap; */
-    padding: 1vh;
-    padding-top: 1.4vh;
-    /* border: 1px solid white; */
+    align-self: center;
+    align-items: center;
 }
 
 #message-input {
@@ -59,7 +36,7 @@
     display: flex;
     flex-direction: row-reverse;
     justify-content: end;
-    flex: 1;
+    /* flex: 1; */
     box-sizing: border-box;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
@@ -71,7 +48,6 @@
 
     box-sizing: border-box;
     background-color: rgb(17, 17, 17);
-
 }
 
 #right-side-option-last-div {
@@ -88,4 +64,15 @@
     display: flex;
     margin: 1.4vh 0vh;
     margin-left: 0.7vw;
+}
+
+#second-last-option-div {
+    background-color: rgb(17, 17, 17);
+    /* border: 1px solid red; */
+}
+
+#emoji-toggler {
+    padding-top: 8px;
+    align-self: center;
+    /* border: 1px solid yellow; */
 }

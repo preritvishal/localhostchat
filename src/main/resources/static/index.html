@@ -7,36 +7,44 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Viewport meta tag for responsive design -->
 
-	<link rel="stylesheet" href="/static/style/class.css">
-	<link rel="stylesheet" href="/static/style/debug.css">
-	<link rel="stylesheet" href="/static/style/input-form.css">
-	<link rel="stylesheet" href="/static/style/main-body.css">
-	<link rel="stylesheet" href="/static/style/message-area.css">
-	<link rel="stylesheet" href="/static/style/screen.css">
-	<link rel="stylesheet" href="/static/style/style.css">
+
+<!-- for actual deployment -->
 
 	<script src="/static/script/vars.js"></script>
 	<script src="/static/script/events.js"></script>
 	<script src="/static/script/websocket.js"></script>
 	<script src="/static/script/script.js"></script>
+
+	<link rel="stylesheet" href="/static/style/style.css">
+	
+	
+<!-- for using live serevr of vs code -->
+
+	<!-- <script src="./script/vars.js"></script>
+	<script src="./script/events.js"></script>
+	<script src="./script/websocket.js"></script>
+	<script src="./script/script.js"></script>
+	
+	<link rel="stylesheet" href="./style/style.css"> -->
+
+
 </head>
 
 <body onload="setupSocket()">
 <div id="main-div">
 
-	<div id="main-div-body">
+	<div id="main-div-body" class="flex-column flex-full">
 
-		<div id="main-div-body-body">
 			<div id="previous-text-div"></div>
 
-			<div id="text-input-div">
+			<div id="text-input-div" class="flex-column">
 
-				<div id="hidden-input-bar" class="flex-row pad5 round-corner-all" style="display: none" >
-					<div class="flex-row-hidden-scroll pad5 child-pad5" id="hidden-input-action-bar">
-						<label>action1</label>
-						<label>action2</label>
-						<label>action3</label>
-						<label>action4</label>
+				<div id="hidden-input-bar" class="flex-row pad5 round-corner-all" style="display: none;">
+					<div class="flex-row-hidden-scroll pad5 child-pad5 round-corner-left" id="hidden-input-action-bar" style="display: none;">
+						<label>/reply</label>
+						<label>/edit</label>
+						<label>/last</label>
+						<label>/clear</label>
 					</div>
 
 					<div class="flex-row-hidden-scroll pad5 child-pad5" id="hidden-input-emoji-bar">
@@ -102,7 +110,8 @@
 						<label>🙀</label>
 						<label>😼</label>
 					</div>
-					<div class="flex-row-hidden-scroll pad5 child-pad5" id="hidden-input-multiplier-bar">
+
+					<div class="flex-row-hidden-scroll pad5 child-pad5 round-corner-right" id="hidden-input-multiplier-bar">
 						<label>x1</label>
 						<label>x2</label>
 						<label>x3</label>
@@ -112,10 +121,11 @@
 					</div>
 				</div>
 
-				<form method="post" action="" id="chat-form" autocomplete="off"
-					  onsubmit="return sendMessageToServer()">
+				<form method="post" action="" id="chat-form" autocomplete="off" class="flex-row round-corner-all flex-full" onsubmit="return sendMessageToServer()">
+
 					<label for="message-input" id="prompt-input-symbol"
-						   onclick="tryReconnecting(true)" onscroll="tryReconnecting(true)">
+							class="flex-row round-corner-left"
+						   onclick="tryReconnecting(true)">
 						bash >
 					</label>
 
@@ -135,18 +145,15 @@
 							</div>
 						</div>
 
-						<div class="right-side-option-divs" id="right-side-emoji-multiplier-div">
-							<div class="pad5 child-pad5" onclick="toggleEmojiBar()">
+						<div id="second-last-option-div" class="flex-column flex-half pad5">
+							<div id="emoji-toggler" class="flex-row flex-full pad5" onclick="toggleEmojiBar()">
 								<label>^</label>
 							</div>
 						</div>
 					</div>
 				</form>
 			</div>
-		</div>
 	</div>
-
-
 
 </div>
 </body>

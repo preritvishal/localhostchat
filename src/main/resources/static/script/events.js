@@ -44,23 +44,63 @@ document.addEventListener('DOMContentLoaded', function() {
     const multiplierBar = document.getElementById('hidden-input-multiplier-bar');
     const actionBar = document.getElementById('hidden-input-action-bar');
     const messageInput = document.getElementById('message-input');
+    let lastEmoji = "";
 
     // Reusable function to handle the wheel event
-    const handleWheelScroll = (event) => {
+    const translateWheelScroll = (event) => {
         event.preventDefault(); // Prevent the default scroll behavior
         event.currentTarget.scrollLeft += event.deltaY; // Scroll left/right based on vertical wheel movement
     };
 
     // Add the wheel event listener to each bar
-    emojiBar.addEventListener('wheel', handleWheelScroll);
-    actionBar.addEventListener('wheel', handleWheelScroll);
-    multiplierBar.addEventListener('wheel', handleWheelScroll);
+    emojiBar.addEventListener('wheel', translateWheelScroll);
+    actionBar.addEventListener('wheel', translateWheelScroll);
+    multiplierBar.addEventListener('wheel', translateWheelScroll);
 
     const emojis = emojiBar.querySelectorAll('label');
     emojis.forEach(emoji => {
         emoji.addEventListener('click', () => {
             messageInput.value += emoji.textContent; // Append the emoji to the input
+            lastEmoji = emoji.textContent;
             messageInput.focus(); // Focus on the message input after clicking the emoji
         });
     });
+
+    const multipliers = multiplierBar.querySelectorAll('label');
+    multipliers.forEach(multiple => {
+        multiple.addEventListener('click', function () {
+            number = parseInt(multiple.textContent.substring(1, multiple.textContent.length));
+            for (let i = 0; i < number; ++i) {
+                messageInput.value += lastEmoji;
+                messageInput.focus();
+            }
+        });
+    });
+});
+
+
+// show action bar when "/" is typed
+document.addEventListener('DOMContentLoaded', function() { 
+
+    const messageInput = document.getElementById('message-input');
+    const hiddenInputBar = document.getElementById('hidden-input-bar');
+    const emojiBar = document.getElementById('hidden-input-emoji-bar');
+    const multiplierBar = document.getElementById('hidden-input-multiplier-bar');
+    const actionBar = document.getElementById('hidden-input-action-bar');
+    
+    messageInput.addEventListener('keydown', function(event) {
+        if (event.key == "/") {
+            hiddenInputBar.style.display = "flex";
+            actionBar.style.display = "flex";
+            emojiBar.style.display = "none";
+            multiplierBar.style.display = "none";
+        }
+        if (event.key == " " || event.key == "Backspace" || event.key == "Delete") {
+            hiddenInputBar.style.display = "none";
+            actionBar.style.display = "none";
+            emojiBar.style.display = "flex";
+            multiplierBar.style.display = "flex";
+        }
+    });
+
 });

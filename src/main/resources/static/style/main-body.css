@@ -6,16 +6,5 @@ body {
 }
 
 #main-div-body {
-    display: flex;
-    flex-direction: row;
     box-sizing: border-box;
-}
-
-#main-div-body-body {
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
-    width: 90vw;
-    height: 99vh;
-    flex: 9;
 }

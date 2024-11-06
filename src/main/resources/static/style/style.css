@@ -1,3 +1,10 @@
+/*importing all css files, so only style.css needs to be added*/
+@import "screen.css";
+@import "debug.css";
+@import "class.css";
+@import "main-body.css";
+@import "message-area.css";
+@import "input-form.css";
 
 p, pre {
     padding: 7px;

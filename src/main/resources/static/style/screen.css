@@ -1,11 +1,45 @@
-@media only screen and (min-width: 2400px) {
-    #main-div-body-body {
-        height: 99vh;  /* Adjust to your desired height for mobile */
+/* for laptop screen */
+@media only screen and (min-width: 768px) {
+    #main-div-body {
+        height: 99vh;
     }
+
+    #hidden-input-emoji-bar {
+        flex: 9;
+    }
+
+    #hidden-input-multiplier-bar {
+        flex: 1;
+    }
+
+    #prompt-input-symbol {
+        flex: 0.5;
+        justify-content: right;
+        padding: 0.5% 1%;
+    }
+
 }
 
+
+/* for mobile screen */
 @media only screen and (max-width: 768px) {
-    body, #main-div-body-body {
-        height: 90vh;  /* Adjust to your desired height for mobile */
+    #main-div-body {
+        height: 85vh;
     }
-}
+
+    #hidden-input-emoji-bar, #hidden-input-multiplier-bar {
+        display: none;
+    }
+
+    #hidden-input-action-bar {
+        flex-direction: row-reverse;
+    }
+
+    #prompt-input-symbol {
+        flex: 1;
+        justify-content: center;
+        padding: 1%;
+        padding-left: 4.5%;
+    }
+
+} 
